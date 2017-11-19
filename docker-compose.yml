@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+    composer:
+        container_name: different-firections.composer
+        image: composer:latest
+        command: install
+        volumes:
+            - .:/app
+
+    app:
+        container_name: different-directions.app
+        image: php:7.1-cli-alpine
+        #Небольшой йкостыль, чтобы подождать завершения работы контейнера composer, пока он подтянет зависимости.
+        command: sh -c "while ping -c1 composer &>/dev/null; do sleep 1; done; echo 'Composer finished! Start app:' && php /app/index.php"
+        volumes_from:
+            - composer

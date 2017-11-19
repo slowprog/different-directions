@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "require": {
+        "php": "^7.0",
+        "tarsana/command": "^1.2"
+    }
+}
